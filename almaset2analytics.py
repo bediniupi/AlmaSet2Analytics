@@ -108,7 +108,7 @@ print ("Filter prompted found on field: " + column_name)
 filter_xml_header = '<sawx:expr xsi:type="sawx:list" op="in">\n<sawx:expr xsi:type="sawx:sqlExpression">' + column_name + sawx_end
 filter_rows = ''
 
-# retrieve set from csv file (
+# retrieve set from csv file
 # options -f [file.csv] -c [csv column name])
 if retrieve_set_from == 'csv':
     import csv
@@ -172,6 +172,8 @@ if retrieve_set_from == 'api':
         for row in set_obj.iter():
             if row.tag == set_tag:
                 filter_rows += '<sawx:expr xsi:type="xsd:string">' + row.text + '</sawx:expr>\n'
+
+# the filter "is equal to / is in" with all data collected
 filter_xml = filter_xml_header + "\n" + filter_rows + "\n" + end_prompted_string
 
 # write the new anaylisis into file

@@ -78,21 +78,24 @@ prompted_found = False
 
 # read analysis file and extract the prompted column
 print ("Reading analysis in file " + filename_xml)
-with open(filename_xml, 'r') as origin:
-    for line in origin:
-        if "prompted" in line:
-            prompted_string += line
-            while True:
-                nextLine = next(origin)
-                prompted_string += nextLine
-                if sawx_end in nextLine:
-                    prompted_found = True
-                    break
-        else:
-            if prompted_found:
-                analysis_xml_end += line
+try:
+    with open(filename_xml, 'r') as origin:
+        for line in origin:
+            if "prompted" in line:
+                prompted_string += line
+                while True:
+                    nextLine = next(origin)
+                    prompted_string += nextLine
+                    if sawx_end in nextLine:
+                        prompted_found = True
+                        break
             else:
-                analysis_xml_start += line
+                if prompted_found:
+                    analysis_xml_end += line
+                else:
+                    analysis_xml_start += line
+except:
+    sys.exit("Error, " + filename_xml + " not found.")
 col_search = re.search(sawx_start + '([^<\/]*)(.*)' + '(.*)', prompted_string)
 try:
     column_name = col_search.group(1)

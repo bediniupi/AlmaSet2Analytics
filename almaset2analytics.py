@@ -76,7 +76,7 @@ analysis_xml_start = ''
 analysis_xml_end = ''
 prompted_found = False
 
-# read an
+# read analysis file and extract the prompted column
 print ("Reading analysis in file " + filename_xml)
 with open(filename_xml, 'r') as origin:
     for line in origin:

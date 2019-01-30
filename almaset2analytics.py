@@ -96,17 +96,16 @@ try:
                     analysis_xml_start += line
 except:
     sys.exit("Error, " + filename_xml + " not found.")
-col_search = re.search(sawx_start + '([^<\/]*)(.*)' + '(.*)', prompted_string)
+col_search = re.search(sawx_start + '([^<\/]*)(.*)', prompted_string)
 try:
     column_name = col_search.group(1)
 except:
     sys.exit("Error: no filter prompted found in " + filename_xml)
-try:
-    end_prompted_string = col_search.group(2)
-    end_prompted_string = end_prompted_string.replace(sawx_end*2, sawx_end)
-except:
-    end_prompted_string = ''
-    
+
+#clean end of filter
+end_prompted_string = col_search.group(2).replace(sawx_end, '', 1)
+
+print (end_prompted_string)    
 print ("Filter prompted found on field: " + column_name)
 filter_xml_header = '<sawx:expr xsi:type="sawx:list" op="in">\n<sawx:expr xsi:type="sawx:sqlExpression">' + column_name + sawx_end
 filter_rows = ''
@@ -161,11 +160,11 @@ if retrieve_set_from == 'api':
         print (response_xml)
         exit()
     
-    steps = int(int(total_members)/100)    
+    steps = int(int(total_members)/100)+1    
     print ("Found " + total_members + " values, reading in " + str(steps) + " step/s" )
-    for step in range(steps+1):
-        print ("Step " + str(step+1) + " of " + str(steps+1))
-        offset = (step*100)+1
+    for step in range(steps):
+        print ("Step " + str(step+1) + " of " + str(steps))
+        offset = (step*100)
         last_offset = offset+99
         if last_offset>int(total_members):
             last_offset=int(total_members)

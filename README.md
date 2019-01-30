@@ -56,7 +56,7 @@ Note: if you have a lot of data in the set it's better and faster to use a csv f
 python almaset2analytics.py -f data.csv -c "MMS ID" file_analysis.xml
 ```
     
-5c. Open the file file_anaysis.xml and select all and copy, the past it into the "Analysis XML" box
+5c. Open the file file_analysis.xml and select all and copy, the past it into the "Analysis XML" box
 
 ## Installation
 No installation needed, simply download allmaset2analytics.py in a rw directory.

@@ -105,7 +105,6 @@ except:
 #clean end of filter
 end_prompted_string = col_search.group(2).replace(sawx_end, '', 1)
 
-print (end_prompted_string)    
 print ("Filter prompted found on field: " + column_name)
 filter_xml_header = '<sawx:expr xsi:type="sawx:list" op="in">\n<sawx:expr xsi:type="sawx:sqlExpression">' + column_name + sawx_end
 filter_rows = ''

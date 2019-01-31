@@ -1,6 +1,6 @@
 # Alma-AlmaSet2Analytics
 
-Use an Alma set or other list of data in csv file as basis for Analytics analysis, modifing an exported file with the analysis in XML format adding a IN filter with the data collected.
+Use an Alma set or list of data in csv file as a basis for Analytics analysis, modifing an exported file with the analysis in XML format adding a IN filter with the data collected.
 Remember to set a filter "is Prompted" in Analytics to the column you want to convert.
 
 ## Usage
@@ -13,7 +13,7 @@ python almaset2analytics.py [-h] [-s Alma Set ID] [-d] [-f filename.csv]
 ```
 ## How to use the script (Examples and variations)
 
-1. to obtain the file_analysis.xml create/modify an analysis adding a filter "is prompted" to the column you want to use (if you want you can add others filters, but only one can be "is prompted" type), then go to the "Advanced" tab and copy all xml data in the "Analysis XML" box. Past it into a text file and save it as "file_analysis.xml" or the name you prefer in the same directory of the script
+1. to obtain the file_analysis.xml create/modify an analysis adding a filter "is prompted" to the column you want to use (if you want you can add others filters, but only one can be "is prompted" filter type), then go to the "Advanced" tab and copy all xml data in the "Analysis XML" box. Past it into a text file and save it as "file_analysis.xml" or the name you prefer in the same directory of the script
 2. create a set in Alma and copy the set id (example id: 221133)
 3. invoke the command: 
 
@@ -25,7 +25,7 @@ python almaset2analytics.py -s 221133 file_analysis.xml -o analysis_modified.xml
 5. Open the file analysis_modified.xml and select all and copy, the past it into the "Analysis XML" box
 6. Click on "Apply XML": now the Analysis contain a IN filter with all data collected from set: it is tested for over 40000 items.
 
-Note: the set is retrieved by Configuration and Administration API  retrieve set members, so you have to obtain and add your institutional api key into the INI section of the script
+Note: the set is retrieved by "retrieve set members" Configuration and Administration API, so you have to obtain and add your institutional api key into the INI section of the script
 
 ### Variation a
 The set data are collected from ID tag, if you want to collect data from Description tag you have to use the -d argument:
@@ -38,7 +38,7 @@ python almaset2analytics.py -s 221133 file_analysis.xml -o analysis_modified.xml
 
 ### Variation b
 
-2b. Export data into a csv file with header; save it into the same directory of the script (ex., data.csv) and copy the header of the column you want collect data from (ex., "MMS ID")
+2b. Export data into a csv file with headers; save it into the same directory of the script (ex., data.csv) and copy the header of the column you want collect data from (ex., "MMS ID")
 
 3b. invoke the command: 
 
@@ -46,7 +46,7 @@ python almaset2analytics.py -s 221133 file_analysis.xml -o analysis_modified.xml
 python almaset2analytics.py -f data.csv -c "MMS ID" file_analysis.xml -o analysis_modified.xml
 ```
     
-Note: if you have a lot of data in the set it's better and faster to use a csv file instead of API retrieve set members method.
+Note: if you have a lot of data in the set it's better and faster to use a csv file instead of retrieve set members API method.
 
 ### Variation c
 
@@ -56,7 +56,7 @@ Note: if you have a lot of data in the set it's better and faster to use a csv f
 python almaset2analytics.py -f data.csv -c "MMS ID" file_analysis.xml
 ```
     
-5c. Open the file file_analysis.xml and select all and copy, the past it into the "Analysis XML" box
+5c. Open the file file_analysis.xml, select all and copy, then past it into the "Analysis XML" box
 
 ## Installation
 No installation needed, simply download allmaset2analytics.py in a rw directory.
@@ -71,9 +71,9 @@ No installation needed, simply download allmaset2analytics.py in a rw directory.
 * **Nazzareno Bedini - University of Pisa**
 
 ## Why not use Analytics API methods to export Analysis?
-In order to avoid the copy/past actions on the Analytics XML tab I've tried to use the Analytics API methods: unfortunally it's not simple to transfer a lot of data via get method, and also splitting the API query calls is not a viable way, I obtained a lot of timeout errors.
+In order to avoid the copy/past actions on the Analytics XML tab I've tried to use the Analytics API methods: unfortunally it's not simple to transfer a lot of data via get method, and also splitting the API query calls is not a viable way, I obtained only timeout errors.
 
-## Acknowledgments
+## References
 * [Alma API Retrieve Set Members](https://developers.exlibrisgroup.com/alma/apis/docs/conf/R0VUIC9hbG1hd3MvdjEvY29uZi9zZXRzL3tzZXRfaWR9L21lbWJlcnM=/)
 * [Rest Members](https://developers.exlibrisgroup.com/alma/apis/docs/xsd/rest_members.xsd/?tags=GET)
 * [Working with Analytics REST APIs](https://developers.exlibrisgroup.com/blog/Working-with-Analytics-REST-APIs/)
